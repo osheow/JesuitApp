@@ -21,14 +21,31 @@ const HomeScreen = ({ navigation }) => {
     if (Platform.OS === 'web') {
       // Render 1 row for web
       return (
+        <View style={styles.buttonContainer}>
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Community')}>
-            <Text>Community</Text>
-          </TouchableOpacity>
+              <Text>Community</Text>
+            </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Sign-ups')}>
-            <Text>Sign-ups</Text>
-          </TouchableOpacity>
+              <Text>Sign-ups</Text>
+            </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Forms')}>
+              <Text>Forms</Text>
+            </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Provinces')}>
+              <Text>Provinces</Text>
+            </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Ministries')}>
+              <Text>Ministries and Guests</Text>
+            </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Announcements')}>
+              <Text>Announcements</Text>
+            </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Calendar')}>
+              <Text>Calendar</Text>
+            </TouchableOpacity>
           {/* Add other buttons for web */}
+          </View>
         </View>
       );
     } else {
