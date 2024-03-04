@@ -1,12 +1,70 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StatusBar, TouchableOpacity, Text, View, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import CommunityPage from './CommunityPage';
+import Calendar from './Calendar';
+import Forms from './Forms';
+import MinistriesGuests from './MinistriesGuests';
+import Provinces from './Provinces';
+import Announcements from './Announcements';
+import SignUps from './SignUps';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+  const HomeScreen = ({ navigation }) => {
+    const navigateToPage = (pageName) => {
+      navigation.navigate(pageName);
+    };
+
   return (
     <View style={styles.container}>
+      {/* Your main content goes here */}
       <Text>Open up App.js to start working on your app!</Text>
+
+      {/* Buttons at the bottom quarter */}
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Community')}>
+          <Text>Community</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Sign-ups')}>
+          <Text>Sign-ups</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Forms')}>
+          <Text>Forms</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Provinces')}>
+          <Text>Provinces</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Ministries')}>
+          <Text>Ministries and Guests</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Announcements')}>
+          <Text>Announcements</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Calendar')}>
+          <Text>Calendar</Text>
+        </TouchableOpacity>
+      </View>
+
       <StatusBar style="auto" />
     </View>
+  );
+}
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Community" component={CommunityPage} />
+        <Stack.Screen name="Calendar" component={Calendar} />
+        <Stack.Screen name="Forms" component={Forms} />
+        <Stack.Screen name="Ministries" component={MinistriesGuests} />
+        <Stack.Screen name="Provinces" component={Provinces} />
+        <Stack.Screen name="Announcements" component={Announcements} />
+        <Stack.Screen name="Sign-ups" component={SignUps} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -16,5 +74,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 10,
+    backgroundColor: '#93282a', // Add a background color for better visibility
+  },
+  button: {
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: '#fff',
   },
 });
