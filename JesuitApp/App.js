@@ -17,6 +17,7 @@ const HomeScreen = ({ navigation }) => {
     navigation.navigate(pageName);
   };
 
+
   const renderButtons = () => {
     if (Platform.OS === 'web') {
       // Render 1 row for web
@@ -24,25 +25,25 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.buttonContainer}>
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Community')}>
-              <Text>Community</Text>
+              <Text style = {styles.buttonText}>Community</Text>
             </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Sign-ups')}>
-              <Text>Sign-ups</Text>
+              <Text style = {styles.buttonText}>Sign-ups</Text>
             </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Forms')}>
-              <Text>Forms</Text>
+              <Text style = {styles.buttonText}>Forms</Text>
             </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Provinces')}>
-              <Text>Provinces</Text>
+              <Text style = {styles.buttonText}>Provinces</Text>
             </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Ministries')}>
-              <Text>Ministries and Guests</Text>
+              <Text style = {styles.buttonText}>Ministries and Guests</Text>
             </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Announcements')}>
-              <Text>Announcements</Text>
+              <Text style = {styles.buttonText}>Announcements</Text>
             </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Calendar')}>
-              <Text>Calendar</Text>
+              <Text style = {styles.buttonText}>Calendar</Text>
             </TouchableOpacity>
           {/* Add other buttons for web */}
           </View>
@@ -68,13 +69,13 @@ const HomeScreen = ({ navigation }) => {
             {/* Add other buttons for iOS and Android row 1 */}
           </View>
           <View style={styles.buttonRow}>
-            <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Ministries')}>
+            <TouchableOpacity style={styles.buttonText} onPress={() => navigateToPage('Ministries')}>
               <Text>Ministries and Guests</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Announcements')}>
+            <TouchableOpacity style={styles.buttonText} onPress={() => navigateToPage('Announcements')}>
               <Text>Announcements</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Calendar')}>
+            <TouchableOpacity style={styles.buttonText} onPress={() => navigateToPage('Calendar')}>
               <Text>Calendar</Text>
             </TouchableOpacity>
             {/* Add other buttons for iOS and Android row 2 */}
@@ -86,10 +87,8 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* Your main content goes here */}
       <Text>Open up App.js to start working on your app!</Text>
 
-      {/* Buttons at the bottom */}
       {renderButtons()}
 
       <StatusBar style="auto" />
@@ -126,9 +125,12 @@ const styles = StyleSheet.create({
   button: {
     padding: 10,
     borderRadius: 5,
-    backgroundColor: '#fff',
+    backgroundColor: '#93282a',
     marginVertical: 5,
   },
+  buttonText:{
+    color: 'white',
+  }
 });
 
 export default function App() {
