@@ -1,13 +1,46 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView} from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 import { Platform } from 'react-native';
+import {Document, Page, pdfjs} from 'react-pdf';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css'; // Import styles for AnnotationLayer
+import 'react-pdf/dist/esm/Page/TextLayer.css';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const CommunityPage = ({ navigation }) => {
+
+
+  const CommunityPage = ({ navigation }) => {
   const [selectedContent, setSelectedContent] = useState('JesuitCalendar'); 
   const [buttonContainerHeight, setButtonContainerHeight] = useState(null);
   const buttonContainerRef = useRef(null);
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
 
+  const HousePoliciesPdf = require('./LMUJesuitCommunityHousePolicies2021.pdf');
+  const HouseJobsPdf = require('./JesuitHouseJobs2024-25.pdf');
+  const PresidingAssignmentsPdf = require('./JesuitPresidersSpring2024.pdf');
+  const ConfessionAssignmentsPdf = require('./SundayPresidersSpring2024.pdf');
+  const ConsultorMeetingMinutesPdf = require('./ConsultorsMeetingMinutesFeb72024.pdf');
+  const CommunityMemberContactInformationListPdf = require('./JesuitCommunityMemberEmailListSpring2024.pdf');
+
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
+
+  const renderPages = () => {
+    const pages = [];
+    for (let i = 1; i <= numPages; i++) {
+      pages.push(
+        <Page key={i} pageNumber={i} width={600} style={styles.page} />
+      );
+    }
+    return (
+      <View style={styles.pagesContainer}>
+        {pages}
+      </View>
+    );
+  };
+  
   const navigateToHome = () => {
     navigation.navigate('Home');
   };
@@ -69,8 +102,6 @@ const CommunityPage = ({ navigation }) => {
       { id: 54, day: 'Saturday', date: 'June 8', description1: 'Ordinations (Los Angeles)', important: false },
       { id: 55, day: 'Sunday', date: 'June TBD', description1: 'CRS Awards Ceremony (2:00-3:00pm Jesuit Gardens)', important: false }
     ];
-  const HousePolicies = [
-  ];
 
   const displayContent = (content) => {
     setSelectedContent(content);
@@ -89,7 +120,7 @@ const CommunityPage = ({ navigation }) => {
               <Row
                 data={['Day', 'Date', 'Event']}
                 style={styles.head}
-                widthArr={Platform.OS === 'ios' ? [80, 100, 190] : undefined} // Adjust widths for iOS only
+                widthArr={Platform.OS === 'ios' ? [80, 100, 190] : undefined}
                 textStyle={{
                   fontWeight: 'bold',
                   ...styles.text
@@ -104,7 +135,7 @@ const CommunityPage = ({ navigation }) => {
                     event.description1
                   ]}
                   style={styles.row}
-                  widthArr={Platform.OS === 'ios' ? [80, 100, 190] : undefined} // Adjust widths for iOS only
+                  widthArr={Platform.OS === 'ios' ? [80, 100, 190] : undefined}
                   textStyle={{
                     fontWeight: event.important ? 'bold' : 'normal',
                     ...styles.text,
@@ -117,18 +148,71 @@ const CommunityPage = ({ navigation }) => {
           </View>
         );
       case 'HousePolicies':
-        return <Text>House Policies Content</Text>;
-      case 'HouseJobs`':
-        return <Text>House Jobs Content</Text>;
-      case 'Presiding Assignments':
-        return <Text>Presiding Assignments Content</Text>;
-      case `Confession Assignments`:
-        return <Text>Confession Assignments Content</Text>;
-      case `Consultor's Meeting Minutes`:
-        return <Text>Consultor's Meeting Minutes Content</Text>;
-      case `Community Member Contact Information List`:
-        return <Text>Community Member Contact Information List Content</Text>;
-  
+        return (
+          <View style={{ flex: 1 }}>
+            <Document
+              file={HousePoliciesPdf}
+              onLoadSuccess={onDocumentLoadSuccess}
+            >
+              {renderPages()}
+            </Document>
+          </View>
+        );
+      case 'HouseJobs':
+        return (
+          <View style={{ flex: 1 }}>
+            <Document
+              file={HouseJobsPdf}
+              onLoadSuccess={onDocumentLoadSuccess}
+            >
+              {renderPages()}
+            </Document>
+          </View>
+        );      
+        case 'PresidingAssignments':
+          return (
+            <View style={{ flex: 1 }}>
+              <Document
+                file={PresidingAssignmentsPdf}
+                onLoadSuccess={onDocumentLoadSuccess}
+              >
+                {renderPages()}
+              </Document>
+            </View>
+          );      
+      case `ConfessionAssignments`:
+        return (
+          <View style={{ flex: 1 }}>
+            <Document
+              file={ConfessionAssignmentsPdf}
+              onLoadSuccess={onDocumentLoadSuccess}
+            >
+              {renderPages()}
+            </Document>
+          </View>
+        );      
+      case `ConsultorMeetingMinutes`:
+        return (
+          <View style={{ flex: 1 }}>
+            <Document
+              file={ConsultorMeetingMinutesPdf}
+              onLoadSuccess={onDocumentLoadSuccess}
+            >
+              {renderPages()}
+            </Document>
+          </View>
+        );
+      case `CommunityMemberContactInformationList`:
+        return (
+          <View style={{ flex: 1 }}>
+            <Document
+              file={CommunityMemberContactInformationListPdf}
+              onLoadSuccess={onDocumentLoadSuccess}
+            >
+              {renderPages()}
+            </Document>
+          </View>
+        );
       default:
         return null;
     }
@@ -260,6 +344,24 @@ const styles = StyleSheet.create({
   },
   iosText: {
     fontSize: 16,
+  },
+  pdf: {
+    flex: 1,
+    width: '100%', 
+    height: '100%', 
+  },
+  pagesContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  page:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: { // Ensure that styles.text is defined as an object
+    margin: 6,
   },
 });
 
