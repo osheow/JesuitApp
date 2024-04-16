@@ -3,11 +3,11 @@ import { StatusBar, TouchableOpacity, Text, View, StyleSheet, Platform } from 'r
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import CommunityPage from './CommunityPage';
-import Calendar from './Calendar';
+import Calendar from './Calendar/CalendarScreen';
 import Forms from './Forms';
 import MinistriesGuests from './MinistriesGuests';
 import Provinces from './Provinces';
-import Announcements from './Announcements';
+import Announcements from './Announcements/AnnouncementScreen';
 import SignUps from './SignUps';
 
 const Stack = createStackNavigator();
