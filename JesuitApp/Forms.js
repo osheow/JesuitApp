@@ -25,13 +25,13 @@ const MainScreen = ({ navigation }) => {
       <View style={styles.buttonContainer}> 
 
         <View style={styles.buttonRow}> 
-          <Pressable style={styles.button} onPress={() => navigateToPage('Absence-Form')}>  
+          <Pressable style={styles.button} onPress={() => navigateToPage('AbsenceForm')}>  
             <Text> Absence Form </Text>
           </Pressable>
         </View>
 
         <View style={styles.buttonRow}> 
-          <Pressable style={styles.button} onPress={() => navigateToPage('Confession-Sign-Up')}>  
+          <Pressable style={styles.button} onPress={() => navigateToPage('ConfessionSignUp')}>  
             <Text> Confession Sign Up </Text>
           </Pressable>
         </View>
@@ -89,8 +89,6 @@ return (
 
 
 
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -132,10 +130,10 @@ const styles = StyleSheet.create({
 export default function Forms() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Forms">
         <Stack.Screen name="Home" component={MainScreen} />
-        <Stack.Screen name="Absence-Form" component={AbsenceForm} />
-        <Stack.Screen name="Confession-Sign-Up" component={ConfessionForm} />
+        <Stack.Screen name="AbsenceForm" component={AbsenceForm} />
+        <Stack.Screen name="ConfessionSignUp" component={ConfessionForm} />
       </Stack.Navigator>
     </NavigationContainer>
   );
