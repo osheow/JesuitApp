@@ -1,6 +1,9 @@
 {
   "dependencies": {
     "create-expo-app": "^2.1.1",
-    "expo": "^50.0.7"
+    "expo": "~50.0.17"
+  },
+  "devDependencies": {
+    "metro": "^0.80.8"
   }
 }

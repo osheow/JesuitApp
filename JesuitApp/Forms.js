@@ -129,13 +129,13 @@ const styles = StyleSheet.create({
 
 export default function Forms() {
   return (
-    <NavigationContainer>
+    //<NavigationContainer>
       <Stack.Navigator initialRouteName="Forms">
         <Stack.Screen name="Home" component={MainScreen} />
         <Stack.Screen name="AbsenceForm" component={AbsenceForm} />
         <Stack.Screen name="ConfessionSignUp" component={ConfessionForm} />
       </Stack.Navigator>
-    </NavigationContainer>
+   // </NavigationContainer>
   );
 }
 
