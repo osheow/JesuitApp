@@ -135,13 +135,13 @@ const TaskCalendar = () => {
                     task.completed && styles.circleButtonPressed,
                   ]}
                 />
-{/* 
+
                 <TouchableOpacity onPress={() => showEditTaskModal(index)}>
                   <Image
-                    source={require("./assets/8666681_edit_icon.png")}
+                    source={require("../assets/8666681_edit_icon.png")}
                     style={styles.editButton}
                   />
-                </TouchableOpacity> */}
+                </TouchableOpacity>
               </View>
             ))}
         </View>
