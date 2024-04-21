@@ -11,10 +11,10 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import Auth from "../components/Auth";
+// import Auth from "./SignIn/Auth";
 
 //web only google auth
-import GoogleUp from "../components/Web-Auth";
+// import GoogleUp from "../components/Web-Auth";
 // import { AppleAuth } from "../components/AppleAuth.native";
 
 export default function ({ navigation }) {
@@ -86,7 +86,7 @@ export default function ({ navigation }) {
             <View style={styles.orLine} />
           </View>
           <View style={styles.googleButton}>
-            <Auth />
+            {/* <Auth /> */}
             {/* <GoogleUp /> */}
             {/* <AppleAuth /> */}
           </View>

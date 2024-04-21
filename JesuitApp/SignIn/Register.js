@@ -11,7 +11,7 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import Auth from "../components/Auth";
+// import Auth from "../components/Auth";
 
 export default function ({ navigation }) {
   const [firstName, setFirstName] = React.useState("");
