@@ -9,7 +9,7 @@ const PDFScreen = () => {
   };
 
   // Dynamically resolve the asset path
-  const asset = require("../assets/Funeral.pdf");
+  const asset = require("./assets/Funeral.pdf");
   source.uri = asset.uri || "";
 
   return (

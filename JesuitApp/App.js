@@ -1,51 +1,87 @@
-import React from 'react';
-import { StatusBar, TouchableOpacity, Text, View, StyleSheet, Platform } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import CommunityPage from './CommunityPage';
-import Calendar from './Calendar/CalendarScreen';
-import Forms from './Forms';
-import MinistriesGuests from './MinistriesGuests';
-import Provinces from './Provinces';
-import Announcements from './Announcements/AnnouncementScreen';
-import SignUps from './SignUps';
+import React from "react";
+import {
+  StatusBar,
+  Button,
+  TouchableOpacity,
+  Text,
+  View,
+  StyleSheet,
+  Platform,
+} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import CommunityPage from "./CommunityPage";
+import Calendar from "./Calendar/CalendarScreen";
+import Forms from "./Forms";
+import MinistriesGuests from "./MinistriesGuests";
+import Provinces from "./Provinces";
+import Announcements from "./Announcements/AnnouncementScreen";
+import SignUps from "./SignUps";
+// import SignOut from "./SignIn/SignOut";
 
 const Stack = createStackNavigator();
+
+function HeaderRightButton() {
+  return (
+    <View style={styles.headerRightContainer}>
+      <Button title="Log In" onPress={() => console.log("Moving over my implementation to use Expo Go")}/>
+      {/* <SignOut /> */}
+    </View>
+  );
+}
 
 const HomeScreen = ({ navigation }) => {
   const navigateToPage = (pageName) => {
     navigation.navigate(pageName);
   };
 
-
   const renderButtons = () => {
-    if (Platform.OS === 'web') {
+    if (Platform.OS === "web") {
       // Render 1 row for web
       return (
         <View style={styles.buttonContainer}>
-        <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Community')}>
-              <Text style = {styles.buttonText}>Community</Text>
+          <View style={styles.buttonRow}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigateToPage("Community")}
+            >
+              <Text style={styles.buttonText}>Community</Text>
             </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Sign-ups')}>
+            {/* Implemented all in Forms */}
+            {/* <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Sign-ups')}>
               <Text style = {styles.buttonText}>Sign-ups</Text>
+            </TouchableOpacity> */}
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigateToPage("Forms")}
+            >
+              <Text style={styles.buttonText}>Forms</Text>
             </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Forms')}>
-              <Text style = {styles.buttonText}>Forms</Text>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigateToPage("Provinces")}
+            >
+              <Text style={styles.buttonText}>Provinces</Text>
             </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Provinces')}>
-              <Text style = {styles.buttonText}>Provinces</Text>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigateToPage("Ministries")}
+            >
+              <Text style={styles.buttonText}>Ministries and Guests</Text>
             </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Ministries')}>
-              <Text style = {styles.buttonText}>Ministries and Guests</Text>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigateToPage("Announcements")}
+            >
+              <Text style={styles.buttonText}>Announcements</Text>
             </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Announcements')}>
-              <Text style = {styles.buttonText}>Announcements</Text>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigateToPage("Calendar")}
+            >
+              <Text style={styles.buttonText}>Calendar</Text>
             </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Calendar')}>
-              <Text style = {styles.buttonText}>Calendar</Text>
-            </TouchableOpacity>
-          {/* Add other buttons for web */}
+            {/* Add other buttons for web */}
           </View>
         </View>
       );
@@ -54,28 +90,49 @@ const HomeScreen = ({ navigation }) => {
       return (
         <View style={styles.buttonContainer}>
           <View style={styles.buttonRow}>
-            <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Community')}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigateToPage("Community")}
+            >
               <Text>Community</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Sign-ups')}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigateToPage("Sign-ups")}
+            >
               <Text>Sign-ups</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Forms')}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigateToPage("Forms")}
+            >
               <Text>Forms</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Provinces')}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigateToPage("Provinces")}
+            >
               <Text>Provinces</Text>
             </TouchableOpacity>
             {/* Add other buttons for iOS and Android row 1 */}
           </View>
           <View style={styles.buttonRow}>
-            <TouchableOpacity style={styles.buttonText} onPress={() => navigateToPage('Ministries')}>
+            <TouchableOpacity
+              style={styles.buttonText}
+              onPress={() => navigateToPage("Ministries")}
+            >
               <Text>Ministries and Guests</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonText} onPress={() => navigateToPage('Announcements')}>
+            <TouchableOpacity
+              style={styles.buttonText}
+              onPress={() => navigateToPage("Announcements")}
+            >
               <Text>Announcements</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonText} onPress={() => navigateToPage('Calendar')}>
+            <TouchableOpacity
+              style={styles.buttonText}
+              onPress={() => navigateToPage("Calendar")}
+            >
               <Text>Calendar</Text>
             </TouchableOpacity>
             {/* Add other buttons for iOS and Android row 2 */}
@@ -97,20 +154,24 @@ const HomeScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  headerRightContainer: {
+    flexDirection: "row",
+    marginRight: 10,
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
-    width: '100%',
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
+    width: "100%",
+    flexDirection: "column",
+    justifyContent: "flex-end",
     paddingVertical: 20,
-    backgroundColor: '#93282a',
+    backgroundColor: "#93282a",
     ...Platform.select({
       ios: {
         paddingBottom: 50,
@@ -119,24 +180,36 @@ const styles = StyleSheet.create({
     }),
   },
   buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
   button: {
     padding: 10,
     borderRadius: 5,
-    backgroundColor: '#93282a',
+    backgroundColor: "#93282a",
     marginVertical: 5,
   },
-  buttonText:{
-    color: 'white',
-  }
+  buttonText: {
+    color: "white",
+  },
 });
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#ECF0F1",
+          },
+          headerTintColor: "#276EAA",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+          headerRight: () => <HeaderRightButton />,
+        }}
+      >
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Community" component={CommunityPage} />
         <Stack.Screen name="Calendar" component={Calendar} />
